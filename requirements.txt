@@ -1,0 +1,9 @@
+langchain
+langgraph
+pinecone
+sentence-transformers
+pypdf
+flask
+uvicorn
+python-dotenv
+tqdm
