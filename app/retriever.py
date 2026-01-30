@@ -6,7 +6,7 @@ pc = Pinecone(api_key=PINECONE_API_KEY)
 index = pc.Index(PINECONE_INDEX)
 
 
-def retrieve(query, k=4):
+def retrieve(query, k=5):
     vector = embed_query(query)
 
     results = index.query(vector=vector, top_k=k, include_metadata=True)

@@ -2,7 +2,7 @@
 
 A Retrieval-Augmented Generation (RAG) chatbot that answers questions **strictly grounded in an Agentic AI eBook (PDF)** using:
 
-- Gemini 2.5 Flash (LLM)
+- Groq - llama-3.1-8b-instant (LLM)
 - LangGraph (pipeline orchestration)
 - Pinecone (vector database)
 - SentenceTransformers (embeddings)
@@ -15,12 +15,11 @@ The assistant retrieves relevant document chunks, reasons over them, and streams
 ## Features
 
 - PDF ingestion → chunk → embed → Pinecone  
-- LangGraph RAG pipeline  
+- LangGraph RAG pipeline
 - Streaming token responses (typewriter effect)  
 - Sources + confidence score  
-- Conversation memory  
-- Chat history sidebar  
-- ChatGPT-like dark UI  
+- Conversation memory
+- Dark UI
 - Fully Python (no low-code / no vibe tools)
 
 ---
@@ -37,7 +36,7 @@ Retriever (Pinecone similarity search)
 ↓
 Top-k context chunks
 ↓
-Gemini 2.5 Flash (grounded generation)
+Groq (grounded generation)
 ↓
 Streaming answer → UI
 ↓
@@ -65,7 +64,7 @@ app/
 ├── graph.py → LangGraph RAG pipeline
 ├── retriever.py → Pinecone search
 ├── embeddings.py → SentenceTransformer embeddings
-├── llm.py → Gemini wrapper
+├── llm.py → Groq wrapper
 ├── ingest.py → PDF ingestion script
 │
 ├── templates/
@@ -85,7 +84,7 @@ READme.md
 ---
 
 # Setup Instructions
-    
+
 ## Clone
 
 ```bash
@@ -104,7 +103,7 @@ pip install -r requirements.txt
 ## Add environment variables
 ```bash
 PINECONE_API_KEY=xxxx
-GOOGLE_API_KEY=xxxx
+GROQ_API_KEY=xxxx
 ```
 ## Ingest the PDF (one time only)
 ```bash
@@ -143,8 +142,8 @@ Request:
 ```
 Streaming response:
 - tokens
-- retrieved contexts
 - confidence score
+- retrieved contexts
 
 ---
 ## Tech Stack
@@ -154,11 +153,10 @@ Streaming response:
 | Frontend   | Bootstrap + JS   |
 | Backend    | Flask            |
 | Pipeline   | LangGraph        |
-| LLM        | Gemini 2.5 Flash |
+| LLM        | Groq(llama-3.1-8b-instant) |
 | Embeddings | all-MiniLM-L6-v2 |
 | Vector DB  | Pinecone         |
 ```
 ---
 #### Author
-- Built as part of an AI Engineer Internship Task
 - RAG + Agents + LangGraph implementation in pure Python.

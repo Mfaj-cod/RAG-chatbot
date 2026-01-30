@@ -10,7 +10,7 @@ from config import PINECONE_API_KEY, PINECONE_INDEX
 abs_path = os.path.abspath(__file__)
 dir_path = os.path.dirname(abs_path)
 
-def chunk_text(text, size=600, overlap=100):
+def chunk_text(text, size=750, overlap=150):
     chunks = []
     for i in range(0, len(text), size - overlap):
         chunks.append(text[i:i+size])

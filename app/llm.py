@@ -1,13 +1,14 @@
-import google.generativeai as genai
-from config import GOOGLE_API_KEY, GEMINI_MODEL
+from groq import Groq
+from config import GROQ_API_KEY, GROQ_MODEL
 
-genai.configure(api_key=GOOGLE_API_KEY)
-model = genai.GenerativeModel(GEMINI_MODEL)
-
+client = Groq(api_key=GROQ_API_KEY)
+model = GROQ_MODEL
 
 def stream_answer(context, question):
     prompt = f"""
 Answer ONLY using the context.
+If the question asks for a summary or overview,
+synthesize across multiple chunks.
 If not found say "Not found in document".
 
 Context:
@@ -17,8 +18,12 @@ Question:
 {question}
 """
 
-    response = model.generate_content(prompt, stream=True)
+    stream = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        stream=True,
+    )
 
-    for chunk in response:
-        if chunk.text:
-            yield chunk.text
+    for chunk in stream:
+        if chunk.choices[0].delta.content:
+            yield chunk.choices[0].delta.content
