@@ -85,12 +85,12 @@ READme.md
 ---
 
 # Setup Instructions
-
+    
 ## Clone
 
 ```bash
-git clone <your-repo>
-cd Agentic-AI-RAG
+git clone https://github.com/Mfaj-cod/RAG-chatbot
+cd RAG-chatbot
 ```
 ## Create environment
 ```bash
